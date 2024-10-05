@@ -1,4 +1,4 @@
-apply plugin: 'com.android.library'
+/*apply plugin: 'com.android.library'
 
 ext {
     bintrayRepo = 'maven'
@@ -46,13 +46,100 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    testCompile 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:25.3.1'
+    testImplementation 'junit:junit:4.12'
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle' */
+
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+    id 'org.jetbrains.kotlin.android'
+}
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'zcustomcalendar'
+
+    publishedGroupId = 'org.naishadhparmar.customcalendar'
+    libraryName = 'ZCustomCalendar'
+    artifact = 'zcustomcalendar'
+
+    libraryDescription = 'Custom calendar for Android'
+
+    siteUrl = 'https://github.com/naishadhparmar/zcustomcalendar'
+    gitUrl = 'https://github.com/naishadhparmar/zcustomcalendar.git'
+
+    libraryVersion = '1.0.1'
+
+    developerId = 'naishadhparmar'
+    developerName = 'Naishadh Parmar'
+    developerEmail = 'naishadh_parmar@live.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+android {
+    compileSdk 34 // Updated to latest compileSdk
+    namespace 'org.naishadhparmar.customcalendar'
+
+    defaultConfig {
+        minSdk 21 // Minimum supported version is bumped to 21 for better compatibility
+        targetSdk 34 // Updated to latest targetSdk
+        versionCode 1
+        versionName "1.0.1"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner" // Migrating from Android Support to AndroidX
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Migrate from Android Support libraries to AndroidX
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+
+    // Testing dependencies updated to AndroidX
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    testImplementation 'junit:junit:4.13.2'
+
+    // Other dependencies can be added here as needed
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication){
+                from components.release
+
+            groupId = 'com.github.naishadhparmar'
+            artifactId = 'zcustomcalendar'
+            version = '1.0.1'
+            }
+        }
+    }
+}
