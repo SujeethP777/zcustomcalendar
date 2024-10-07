@@ -78,5 +78,5 @@ dependencies {
 
     //implementation 'com.github.naishadhparmar:zcustomcalendar:1.0.1'
 
-    implementation 'com.github.SujeethP777:zcustomcalendar-main:1.0'
+    implementation 'com.github.SujeethP777:zcustomcalendar-main:1.0.1'
 }

@@ -15,5 +15,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "zcustomcalendar"
-include ':app', ':zcustomcalendar'
-
+include ':app'
+//include ':zcustomcalendar'
