@@ -154,7 +154,7 @@ publishing {
 
             groupId = 'com.github.SujeethP777'
             artifactId = 'zcustomcalendar'
-            version = '1.0.3'
+            version = '1.0.4'
         }
     }
 
