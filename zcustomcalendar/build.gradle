@@ -130,7 +130,7 @@ dependencies {
     // Other dependencies can be added here as needed
 }
 
-afterEvaluate {
+/*afterEvaluate {
     publishing {
         publications {
             release(MavenPublication){
@@ -141,5 +141,24 @@ afterEvaluate {
             version = '1.0'
             }
         }
+    }
+} */
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            // Use the correct Android component for release
+            afterEvaluate {
+                from components.findByName("release")
+            }
+
+            groupId = 'com.github.SujeethP777'
+            artifactId = 'zcustomcalendar'
+            version = '1.0.3'
+        }
+    }
+
+    repositories {
+        mavenLocal()
     }
 }
