@@ -74,8 +74,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     // Uncomment the following if you plan to use a local or external calendar library
     // implementation 'org.naishadhparmar.zcustomcalendar:zcustomcalendar:1.0.1'
-     implementation project(':zcustomcalendar')
+    // implementation project(':zcustomcalendar')
 
     //implementation 'com.github.naishadhparmar:zcustomcalendar:1.0.1'
 
+    implementation 'com.github.SujeethP777:zcustomcalendar:1.0'
 }
